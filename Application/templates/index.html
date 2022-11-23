@@ -1,0 +1,37 @@
+{% extends 'header_1.html' %}
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+{% load static %}
+<style>
+    .container .row
+    {
+        height: 88vh;
+    }
+    .container .btn:hover
+    {
+        background-color: orangered;
+    }
+</style>
+<div class="container">
+    <center>
+        <div class="row d-flex align-items-center">
+        <div class="col-lg-4 m-0 p-0">
+            <a href="{% url 'emp_login' %}"><button class="btn btn-lg btn-dark p-3"
+                    style="border-radius: 0px;color: white;border-radius: 40px;width: 310px;border: 0px;">Employee
+                    Login</button></a>
+        </div>
+        <div class="col-lg-4 m-0 p-0">
+            <a href="{% url 'emp_register' %}"><button class="btn btn-lg btn-dark  p-3"
+                    style="border-radius: 0px;color: white;border-radius: 40px;width: 310px;border: 0px;">Employee
+                    Register</button></a>
+        </div>
+        <div class="col-lg-4 m-0 p-0">
+            <a href="#"><button class="btn btn-lg btn-dark  p-3"
+                    style="border-radius: 0px;color: white;border-radius: 40px;width: 310px;border: 0px;">Admin
+                    Login</button></a>
+        </div>
+    </div>
+    </center>
+</div>
+{% endblock content %}

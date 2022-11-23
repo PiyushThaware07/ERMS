@@ -1,0 +1,80 @@
+{% extends 'header_1.html' %}
+{% block title %}Create Account{% endblock title %}
+{% block content %}
+<script>
+    function checkpassword()
+    {
+        if(document.signup.password1.value!=document.signup.password2.value)
+        {
+            alert("Password doesn't matches");
+            document.signup.password1.focus();
+            return false;
+        }
+        return true;
+    }
+</script>
+<div class="container p-3 p-md-5 d-flex align-items-center justify-content-center" style="height: 89vh;">
+    <div class="card p-3 shadow bg-transparent mt-3" style="width:500px;">
+        <div class="card-title text-center" style="border-bottom:3px solid orangered;">
+            <h3><b>Create Account</b></h3>
+        </div>
+        <div class="card-body">
+            <form action="" method="post" name="signup" onsubmit="return checkpassword()">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="firstname"><b>First Name</b></label>
+                        <input type="text" name="firstname" id="firstname" placeholder="Enter First Name"
+                            class="form-control" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="lastname"><b>Last Name</b></label>
+                        <input type="text" name="lastname" id="lastname" placeholder="Enter Last Name"
+                            class="form-control" required>
+                    </div>
+                </div>
+                <div class="row  my-0 my-md-2">
+                    <div class="col-md-12">
+                        <label for="email"><b>Email ID</b></label>
+                        <input type="text" name="email" id="email" placeholder="Enter Email Address"
+                            class="form-control" required>
+                    </div>
+                </div>
+                <div class="row  my-0 my-md-2">
+                    <div class="col-md-6">
+                        <label for="password1"><b>Password</b></label>
+                        <input type="password" name="password1" id="password1" placeholder="Enter Password"
+                            class="form-control" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="password2"><b>Confirm Password</b></label>
+                        <input type="password" name="password2" id="password2" placeholder="Enter Confirm Password"
+                            class="form-control" required>
+                    </div>
+                </div>
+
+                <a href=""><button class="btn mt-3 p-2"
+                        style="border: 0px;border-radius: 0px;background-color: orangered;color: white;width:100px;" type="submit">Create</button></a>
+            </form>
+            <div class="d-none d-lg-block">
+                <a href="{% url 'emp_login' %}" class="text-dark text-decoration-none"
+                    style="float: right;bottom: 35px;position: relative;"><i class="fa fa-sign-in"></i> Login</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Java Script-->
+{% if error == 'no' %}
+<script>
+    alert('Signup successfully');
+    window.location = ('{% url 'emp_login' %}'); 
+</script>
+{% endif %}
+{% if error == 'yes' %}
+<script>
+    alert('Something Went Wrong,Try Again ...');
+</script>
+{% endif %}
+
+{% endblock content %}
