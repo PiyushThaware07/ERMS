@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 #  Model
 from . models import *
 # auth
@@ -67,4 +67,8 @@ def emp_changePassword(request):
                 error = "not"    
         except:
             error = "yes"   
-    return render(request, 'emp_changePassword.html',locals())        
+    return render(request, 'emp_changePassword.html',locals())      
+
+def emp_logout(request):
+    logout(request)
+    return redirect('index')
