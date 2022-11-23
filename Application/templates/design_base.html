@@ -32,11 +32,10 @@
                   <div class="card-body">
                       <div class="list-group">
                           <a href="{% url 'emp_Interface' %}" class="list-group-item list-group-item list-group-item-action {% if request.path == '/emp_Interface' %}active{% endif %}">Dashboard</a>
-                          <a href="" class="list-group-item list-group-item-action">Profile</a>
-                          <a href="" class="list-group-item list-group-item-action">My Experiece</a>
-                          <a href="" class="list-group-item list-group-item-action">Edit Experiece</a>
-                          <a href="" class="list-group-item list-group-item-action">My Education</a>
-                          <a href="" class="list-group-item list-group-item-action">Edit Education</a>
+                          <a href="{% url 'emp_profile' %}" class="list-group-item list-group-item-action {% if request.path == '/emp_profile' %}active{% endif %}">Profile</a>
+                          <a href="" class="list-group-item list-group-item-action">Experiece</a>
+                          <a href="" class="list-group-item list-group-item-action">Skills</a>
+                          <a href="" class="list-group-item list-group-item-action">Performance</a>
                           <a href="{% url 'emp_changePassword' %}" class="list-group-item list-group-item-action {% if request.path == '/emp_changePassword' %}active{% endif %}">Change Password</a>
                           <a href="{% url 'emp_logout' %}" class="list-group-item list-group-item-action {% if request.path == '/emp_logout' %}active{% endif %}" onclick="return confirm('Confirm Logout ? \n user : {{user.username}}')">Logout</a>
                       </div>

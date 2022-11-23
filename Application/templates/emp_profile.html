@@ -1,0 +1,89 @@
+{% extends 'design_base.html' %}
+{% block title %}Profile{% endblock title %}
+{% block data %}
+<div class="card-body">
+    <div class="alert alert-primary m-0 p-md-4" role="alert">
+        <h5 class="mb-3">Employee Profile</h5>
+        <div class="card">
+            <div class="card-body p-md-5">
+                <form action="" method="post" name="change" onsubmit="return confirm('confirm save changes')">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="firstname">First Name</label>
+                            <input type="text" class="form-control" placeholder="First Name"
+                                name="firstname" id="firstname" value="{{user.first_name}}">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="lastname">Last Name</label>
+                            <input type="text" class="form-control" placeholder="Last Name"
+                                name="lastname" id="lastname" value="{{user.last_name}}">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="emp_id">Emp ID</label>
+                            <input type="text" class="form-control" placeholder="Employee ID"
+                                name="emp_id" id="emp_id" value="{{employee.emp_id}}" class="field left" readonly>
+                        </div>
+                    </div>
+                    <div class="row my-md-3 my-1">
+                        <div class="col-md-5">
+                            <label for="email">Email ID</label>
+                            <input type="text" class="form-control" placeholder="Email"
+                                name="email" id="email" value="{{user.username}}">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="contact">Contact</label>
+                            <input type="tel" class="form-control" placeholder="Contact"
+                                name="contact" id="contact" value="{{employee.contact}}">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="gender">Gender : {{employee.gender}}</label>
+                            <select name="gender" id="gender" class="form-control">
+                                <option value="none">Select</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="department">Department</label>
+                            <input type="text" class="form-control" placeholder="Department"
+                                name="department" id="department" value="{{employee.department}}">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="designation">Designation</label>
+                            <input type="text" class="form-control" placeholder="Designation"
+                                name="designation" id="designation" value="{{employee.designation}}">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="joiningDate">Joining Date : {{employee.joiningDate}}</label>
+                            <input type="date" class="form-control" placeholder="Joining Date"
+                                name="joiningDate" id="joiningDate"> 
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <a href=""><button class="btn mt-3 p-2"
+                                style="border: 0px;border-radius: 0px;background-color: orangered;color: white;width:100px;"
+                                type="submit">Save</button></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Java Script-->
+{% if error == 'no' %}
+<script>
+    alert('Profile Updated successfully');
+    window.location = ('{% url 'emp_profile' %}'); 
+</script>
+{% endif %}
+{% if error == 'yes' %}
+<script>
+    alert('Something Went Wrong,Try Again ...');
+</script>
+{% endif %}
+{% endblock data %}

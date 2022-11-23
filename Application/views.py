@@ -72,3 +72,40 @@ def emp_changePassword(request):
 def emp_logout(request):
     logout(request)
     return redirect('index')
+
+def emp_profile(request):
+    if not request.user.is_authenticated:
+        return redirect('emp_login')
+    user = request.user #current user
+    employee = EmployeeDetail.objects.get(user=user)
+    if request.method == "POST":
+        firstname = request.POST['firstname']
+        lastname = request.POST['lastname']
+        email = request.POST['email']
+        contact = request.POST['contact']
+        gender = request.POST['gender']
+        designation = request.POST['designation']
+        department = request.POST['department']
+        joiningDate = request.POST['joiningDate']
+
+        # Update changes:
+        employee.user.first_name = firstname
+        employee.user.last_name = lastname
+        employee.user.username = email
+        employee.contact = contact
+        employee.designation = designation
+        employee.department = department
+
+        if joiningDate:
+             employee.joiningDate = joiningDate
+        if gender!="none":
+             employee.gender = gender          
+             
+        try:
+            employee.save()
+            employee.user.save()
+            error = "no"
+        except:
+            error = "yes"    
+
+    return render(request, 'emp_profile.html',locals()) 

@@ -26,4 +26,5 @@ urlpatterns = [
     path('emp_Interface',views.emp_Interface,name="emp_Interface"),
     path('emp_changePassword',views.emp_changePassword,name="emp_changePassword"),
     path('emp_logout',views.emp_logout,name="emp_logout"),
+    path('emp_profile',views.emp_profile,name="emp_profile"),
 ]
