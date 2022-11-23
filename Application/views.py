@@ -44,3 +44,27 @@ def emp_login(request):
         else:
             error = "yes"    
     return render(request, 'emp_login.html',locals())
+
+def emp_Interface(request):
+    if not request.user.is_authenticated:
+        return redirect('emp_login')
+    return render(request, 'emp_Interface.html',locals())   
+
+def emp_changePassword(request):
+    if not request.user.is_authenticated:
+        return redirect('emp_login')
+    error = ""
+    user = request.user   
+    if request.method == "POST":
+        current = request.POST['currentPassowrd']
+        newPass = request.POST['newPassword']
+        try:
+            if user.check_password(current):
+                user.set_password(newPass)
+                user.save()
+                error = "no"
+            else:
+                error = "not"    
+        except:
+            error = "yes"   
+    return render(request, 'emp_changePassword.html',locals())        
