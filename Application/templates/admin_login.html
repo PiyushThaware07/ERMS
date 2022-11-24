@@ -1,0 +1,48 @@
+{% extends 'admin_base.html' %}
+{% block title %}Admin Login{% endblock title %}
+{% block data %}
+<div class="container p-3 p-md-5 d-flex align-items-center justify-content-center" style="height: 89vh;">
+    <div class="card p-3 shadow bg-transparent mt-3" style="width:500px;">
+        <div class="card-title text-center" style="border-bottom:2px solid orangered;">
+            <h3><b>Admin Login</b></h3>
+        </div>
+        <div class="card-body">
+            <form action="" method="post" name="signup">
+                {% csrf_token %}
+                <div class="col-md-12">
+                    <label for="email"><b>Email ID</b></label>
+                    <input type="text" name="email" id="email" placeholder="Enter Email Address" class="form-control"
+                        required>
+                </div>
+                <div class="col-md-12 my-0 my-md-2">
+                    <label for="password"><b>Password</b></label>
+                    <input type="password" name="password" id="password" placeholder="Enter Password"
+                        class="form-control" required>
+                </div>
+                <a href=""><button class="btn mt-3 p-2"
+                        style="border: 0px;border-radius: 0px;background-color: orangered;color: white;width:100px;"
+                        type="submit">Login</button></a>
+            </form>
+            <div class="d-none d-lg-block">
+                <a href="{% url 'index' %}" class="text-white text-decoration-none"
+                    style="float: right;bottom: 35px;position: relative;"><i class="fa fa-home"></i> Go To Home</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--Java Script-->
+{% if error == 'no' %}
+<script>
+    alert('Login successfully');
+    window.location = ('{% url 'emp_home' %}'); 
+</script>
+{% endif %}
+{% if error == 'yes' %}
+<script>
+    alert("User doesn't exsist ,Try Again ...");
+    document.signup.email.focus();
+</script>
+{% endif %}
+{% endblock data %}

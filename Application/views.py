@@ -16,10 +16,8 @@ def emp_register(request):
 
         import random
         max_length = 6
-        character = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','y']
         digits = ['0','1','2','3','4','5','6','7','8','9']
-        combine_list = character+digits
-        generate = [random.choice(combine_list) for i in range(max_length)]
+        generate = [random.choice(digits) for i in range(max_length)]
         emp_id = ""
         for item in generate:
             emp_id+=item   
@@ -229,3 +227,22 @@ def edit_Experience(request):
         except:
             error = "yes"  
     return render(request, 'edit_Experience.html',locals())
+
+def admin_Login(request):
+    error = ""
+    if request.method == "POST":
+        email = request.POST['email']
+        password = request.POST['password']
+        user = authenticate(username=email,password=password)
+        try:
+            if user.is_staff:
+                login(request, user)
+                error = "no"
+            else:
+                error = "yes"
+        except:
+            error = "yes"            
+    return render(request, 'admin_Login.html',locals())
+
+def emp_home(request):
+    return render(request, 'emp_home.html')    

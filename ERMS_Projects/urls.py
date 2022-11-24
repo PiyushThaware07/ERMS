@@ -31,4 +31,7 @@ urlpatterns = [
     path('edit_Education',views.edit_Education,name="edit_Education"),
     path('emp_Experience',views.emp_Experience,name="emp_Experience"),
     path('edit_Experience',views.edit_Experience,name="edit_Experience"),
+    # Admin
+    path('emp_home',views.emp_home,name="emp_home"),
+    path('admin_Login',views.admin_Login,name="admin_Login"),
 ]
