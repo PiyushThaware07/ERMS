@@ -8,9 +8,42 @@
   </head>
   <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg bg-black navbar-dark">
+    <div class="d-md-none d-block">
+        <nav class="navbar navbar-expand-lg bg-black navbar-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'index' %}"><b>ERMS</b></a>
+          <a class="navbar-brand text-white" href="{% url 'emp_Interface' %}"><b>ERMS</b></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'emp_Interface' %}">Dashboard</a>
+              </li>             
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'emp_profile' %}">Profile</a>
+              </li>             
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'emp_education' %}">Eduation</a>
+              </li>             
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'emp_Experience' %}">Experience</a>
+              </li>             
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'emp_changePassword' %}">Change Password</a>
+              </li>             
+            </ul>
+            <span class="d-flex py-3">
+                <a href="{% url 'emp_logout' %}" class="list-group-item list-group-item-action" onclick="return confirm('Confirm Logout ? \n user : {{user.username}}')"><button class="btn btn-sm btn-danger" type="button">Logout</button></a>
+              </span>
+          </div>
+        </div>
+      </nav>
+    </div>
+    
+    <nav class="d-md-block d-none">
+        <div class="container-fluid text-white bg-black p-3">
+            <h5 class="p-0 m-0"><b>ERMS</b></h5>
         </div>
     </nav>
 
@@ -27,7 +60,7 @@
   </style>
   <div class="container-fluid bg-dark">
       <div class="row">
-          <div class="col-md-3 mt-3">
+          <div class="col-md-3 d-md-block d-none mt-3">
               <div class="card">
                   <div class="card-body">
                       <div class="list-group">
@@ -37,8 +70,6 @@
                           <span class="{% if request.path == '/edit_Education' %}d-block {% else %}d-none {% endif %}"><a href="{% url 'edit_Education' %}" class="list-group-item list-group-item-action {% if request.path == '/edit_Education' %}bg-success text-white text-center{% endif %}">Education <button class="btn btn-sm btn-dark m-0" style="border-radius:0px;float:right;bottom:3px;position: relative;right:-10px;width:60px;">Edit</button></a></span>
                           <a href="{% url 'emp_Experience' %}" class="list-group-item list-group-item-action {% if request.path == '/emp_Experience' %}active{% endif %}">Experience</a>
                           <span class="{% if request.path == '/edit_Experience' %}d-block {% else %}d-none {% endif %}"><a href="{% url 'edit_Experience' %}" class="list-group-item list-group-item-action {% if request.path == '/edit_Experience' %}bg-success text-white text-center{% endif %}">Experience <button class="btn btn-sm btn-dark m-0" style="border-radius:0px;float:right;bottom:3px;position: relative;right:-10px;width:60px;">Edit</button></a></span>
-                          <a href="" class="list-group-item list-group-item-action">Skills</a>
-                          <a href="" class="list-group-item list-group-item-action">Performance</a>
                           <a href="{% url 'emp_changePassword' %}" class="list-group-item list-group-item-action {% if request.path == '/emp_changePassword' %}active{% endif %}">Change Password</a>
                           <a href="{% url 'emp_logout' %}" class="list-group-item list-group-item-action {% if request.path == '/emp_logout' %}active{% endif %}" onclick="return confirm('Confirm Logout ? \n user : {{user.username}}')">Logout</a>
                       </div>
