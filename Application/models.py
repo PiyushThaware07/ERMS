@@ -40,3 +40,23 @@ class EmployeeEducation(models.Model):
 
     def __str__(self):
         return f"{self.user.first_name} {self.user.last_name} / {self.user.username}"
+
+class EmployeeExperience(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE) #used to store pass , email , name 
+    company1name = models.CharField(max_length=100,null=True)
+    company1designation = models.CharField(max_length=100,null=True)
+    company1salary = models.CharField(max_length=100,null=True)
+    company1duration = models.CharField(max_length=100,null=True)
+
+    company2name = models.CharField(max_length=100,null=True)
+    company2designation = models.CharField(max_length=100,null=True)
+    company2salary = models.CharField(max_length=100,null=True)
+    company2duration = models.CharField(max_length=100,null=True)
+
+    company3name = models.CharField(max_length=100,null=True)
+    company3designation = models.CharField(max_length=100,null=True)
+    company3salary = models.CharField(max_length=100,null=True)
+    company3duration = models.CharField(max_length=100,null=True)
+    
+    def __str__(self):
+        return f"{self.user.first_name} {self.user.last_name} / {self.user.username}"

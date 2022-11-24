@@ -28,6 +28,7 @@ def emp_register(request):
             new_user = User.objects.create_user(first_name=firstname,last_name=lastname,username=email,password=password) 
             EmployeeDetail.objects.create(user=new_user,emp_id=emp_id) 
             EmployeeEducation.objects.create(user=new_user)
+            EmployeeExperience.objects.create(user=new_user)
             error = "no"
         except:
             error = "yes"     
@@ -121,7 +122,6 @@ def emp_education(request):
 def edit_Education(request):
     if not request.user.is_authenticated:
         return redirect('emp_login')
-    color = "primary"
     error = ""    
     user = request.user #current user
     education = EmployeeEducation.objects.get(user=user)
@@ -172,9 +172,60 @@ def edit_Education(request):
         try:
             education.save()
             error = "no"
-            color = "success"
         except:
             error = "yes"  
-            color = "danger"  
             print("exception : ",e)
     return render(request, 'edit_Education.html',locals())    
+
+
+def emp_Experience(request):
+    if not request.user.is_authenticated:
+        return redirect('emp_login')
+    user = request.user
+    experience = EmployeeExperience.objects.get(user=user)      
+    return render(request, 'emp_Experience.html',locals())
+
+def edit_Experience(request):
+    if not request.user.is_authenticated:
+        return redirect('emp_login')
+    user = request.user
+    experience = EmployeeExperience.objects.get(user=user)    
+    if request.method == "POST":
+        c1n = request.POST['company1name']
+        c1d = request.POST['company1designation']
+        c1s = request.POST['company1salary']
+        c1t = request.POST['company1duration']
+
+        c2n = request.POST['company2name']
+        c2d = request.POST['company2designation']
+        c2s = request.POST['company2salary']
+        c2t = request.POST['company2duration']
+        
+        c3n = request.POST['company3name']
+        c3d = request.POST['company3designation']
+        c3s = request.POST['company3salary']
+        c3t = request.POST['company3duration']
+
+        experience.company1name = c1n
+        experience.company1designation = c1d
+        experience.company1salary = c1s
+        experience.company1duration = c1t
+
+        experience.company2name = c2n
+        experience.company2designation = c2d
+        experience.company2salary = c2s
+        experience.company2duration = c2t
+
+        experience.company3name = c3n
+        experience.company3designation = c3d
+        experience.company3salary = c3s
+        experience.company3duration = c3t
+
+
+        max_length = 4
+        try:
+            experience.save()
+            error = "no"
+        except:
+            error = "yes"  
+    return render(request, 'edit_Experience.html',locals())

@@ -29,4 +29,6 @@ urlpatterns = [
     path('emp_profile',views.emp_profile,name="emp_profile"),
     path('emp_education',views.emp_education,name="emp_education"),
     path('edit_Education',views.edit_Education,name="edit_Education"),
+    path('emp_Experience',views.emp_Experience,name="emp_Experience"),
+    path('edit_Experience',views.edit_Experience,name="edit_Experience"),
 ]

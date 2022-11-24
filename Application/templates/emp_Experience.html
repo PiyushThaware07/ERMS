@@ -1,0 +1,89 @@
+{% extends 'design_base.html' %}
+{% block title %}Experience{% endblock title %}
+{% block data %}
+
+<div class="card-body">
+    <div class="alert alert-danger m-0 p-md-4" role="alert">
+        <h5 class="mb-3">Employee Experience</h5>
+        <div class="card">
+            <div class="card-body p-md-4">
+                <div class="row">
+                    <h5 class="text-decoration-underline"><b>Company : 1</b></h5>
+                    <div class="col-md-3">
+                        <label for="company1name">Company Name</label>
+                        <input type="text" placeholder="Company Name" name="company1name" id="company1name"
+                            class="form-control" value="{{experience.company1name}}"  class="field left" readonly>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="company1designation">Designation</label>
+                        <input type="text" placeholder="Designation" name="company1designation" id="company1designation"
+                            class="form-control" value="{{experience.company1designation}}"  class="field left" readonly>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="company1salary">Salary</label>
+                        <input type="text" placeholder="Salary" name="company1salary" id="company1salary"
+                            class="form-control" value="{{experience.company1salary}}"  class="field left" readonly>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="company1duration">Duration</label>
+                        <input type="text" placeholder="Duration" name="company1duration" id="company1duration"
+                            class="form-control" value="{{experience.company1duration}}"  class="field left" readonly>
+                    </div>
+                </div>
+                <div class="row my-md-3 my-2">
+                    <h5 class="text-decoration-underline"><b>Company : 2</b></h5>
+                    <div class="col-md-3">
+                        <label for="company2name">Company Name</label>
+                        <input type="text" placeholder="Company Name" name="company2name" id="company2name"
+                            class="form-control" value="{{experience.company2name}}"  class="field left" readonly>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="company2designation">Designation</label>
+                        <input type="text" placeholder="Designation" name="company2designation" id="company2designation"
+                            class="form-control" value="{{experience.company2designation}}"  class="field left" readonly>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="company2salary">Salary</label>
+                        <input type="text" placeholder="Salary" name="company2salary" id="company2salary"
+                            class="form-control" value="{{experience.company2salary}}"  class="field left" readonly>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="company2duration">Duration</label>
+                        <input type="text" placeholder="Duration" name="company2duration" id="company2duration"
+                            class="form-control" value="{{experience.company2duration}}"  class="field left" readonly>
+                    </div>
+                </div>
+                <div class="row my-md-3 my-2">
+                    <h5 class="text-decoration-underline"><b>Company : 3</b></h5>
+                    <div class="col-md-3">
+                        <label for="company3name">Company Name</label>
+                        <input type="text" placeholder="Company Name" name="company3name" id="company3name"
+                            class="form-control" value="{{experience.company3name}}"  class="field left" readonly>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="company3designation">Designation</label>
+                        <input type="text" placeholder="Designation" name="company3designation" id="company3designation"
+                            class="form-control" value="{{experience.company3designation}}"  class="field left" readonly>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="company3salary">Salary</label>
+                        <input type="text" placeholder="Salary" name="company3salary" id="company3salary"
+                            class="form-control" value="{{experience.company3salary}}"  class="field left" readonly>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="company3duration">Duration</label>
+                        <input type="text" placeholder="Duration" name="company3duration" id="company3duration"
+                            class="form-control" value="{{experience.company3duration}}"  class="field left" readonly>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <a href="{% url 'edit_Experience' %}"><button class="btn mt-3 p-2"
+                            style="border: 0px;border-radius: 0px;background-color: orangered;color: white;width:100px;"
+                            type="submit">Edit</button></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock data %}
