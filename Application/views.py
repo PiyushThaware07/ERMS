@@ -27,6 +27,7 @@ def emp_register(request):
         try:
             new_user = User.objects.create_user(first_name=firstname,last_name=lastname,username=email,password=password) 
             EmployeeDetail.objects.create(user=new_user,emp_id=emp_id) 
+            EmployeeEducation.objects.create(user=new_user)
             error = "no"
         except:
             error = "yes"     
@@ -109,3 +110,71 @@ def emp_profile(request):
             error = "yes"    
 
     return render(request, 'emp_profile.html',locals()) 
+
+def emp_education(request):
+    if not request.user.is_authenticated:
+        return redirect('emp_login')
+    user = request.user #current user
+    education = EmployeeEducation.objects.get(user=user)
+    return render(request, 'emp_education.html',locals())    
+    
+def edit_Education(request):
+    if not request.user.is_authenticated:
+        return redirect('emp_login')
+    color = "primary"
+    error = ""    
+    user = request.user #current user
+    education = EmployeeEducation.objects.get(user=user)
+    if request.method == "POST":
+        # PG
+        coursenamePG = request.POST['coursenamePG']
+        collegePG = request.POST['collegePG']
+        marksPG = request.POST['marksPG']
+        passoutPG = request.POST['passoutPG']
+        # G
+        coursenameG = request.POST['coursenameG']
+        collegeG = request.POST['collegeG']
+        marksG = request.POST['marksG']
+        passoutG = request.POST['passoutG']
+        # HSC
+        coursenameHSC = request.POST['coursenameHSC']
+        collegeHSC = request.POST['collegeHSC']
+        marksHSC = request.POST['marksHSC']
+        passoutHSC = request.POST['passoutHSC']
+        # SSC
+        coursenameSSC = request.POST['coursenameSSC']
+        collegeSSC = request.POST['collegeSSC']
+        marksSSC = request.POST['marksSSC']
+        passoutSSC = request.POST['passoutSSC']
+        # Update Data
+       
+        # Update changes:
+        education.CoursenamePG = coursenamePG
+        education.CollegePG = collegePG
+        education.ScorePG = marksPG
+        education.PassoutPG = passoutPG
+
+        education.CoursenameG = coursenameG
+        education.CollegeG = collegeG
+        education.ScoreG = marksG
+        education.PassoutG = passoutG
+
+        education.CoursenameHSC = coursenameHSC
+        education.CollegeHSC = collegeHSC
+        education.ScoreHSC = marksHSC
+        education.PassoutHSC = passoutHSC
+
+        education.CoursenameSSC = coursenameSSC
+        education.CollegeSSC = collegeSSC
+        education.ScoreSSC = marksSSC
+        education.PassoutSSC = passoutSSC
+    
+        try:
+            education.save()
+            error = "no"
+            color = "success"
+        except:
+            error = "yes"  
+            color = "danger"  
+            print("exception : ",e)
+    return render(request, 'edit_Education.html',locals())    

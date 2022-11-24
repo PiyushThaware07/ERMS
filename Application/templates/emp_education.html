@@ -1,0 +1,116 @@
+{% extends 'design_base.html' %}
+{% block title %}Education{% endblock title %}
+{% block data %}
+
+<div class="card-body">
+    <div class="alert alert-danger m-0 p-md-4" role="alert">
+        <h5 class="mb-3">Employee Education</h5>
+        <div class="card">
+            <div class="card-body p-md-4">
+                {% csrf_token %}
+                <!-- PG -->
+                <div class="row">
+                    <h5 class="text-decoration-underline">Post Graduation</h5>
+                    <div class="col-md-3">
+                        <label for="coursenamePG">Course Name</label>
+                        <input type="text" class="form-control" placeholder="Course Name" name="coursenamePG"
+                            id="coursenamePG" value="{{education.CoursenamePG}}" class="field left" readonly>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="collegePG">College Name</label>
+                        <input type="text" class="form-control" placeholder="College Name" name="collegePG"
+                            id="collegePG" value="{{education.CollegePG}}" class="field left" readonly>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="marksPG">Marks</label>
+                        <input type="text" class="form-control" placeholder="Marks" name="marksPG" id="marksPG"
+                            value="{{education.ScorePG}}" class="field left" readonly>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="passoutPG">Year Of Passing</label>
+                        <input type="text" class="form-control" placeholder="Year" name="passoutPG" id="passoutPG"
+                            value="{{education.PassoutPG}}" class="field left" readonly>
+                    </div>
+                </div>
+                <!-- G -->
+                <div class="row my-3">
+                    <h5 class="text-decoration-underline">Graduation</h5>
+                    <div class="col-md-3">
+                        <label for="coursenameG">Course Name</label>
+                        <input type="text" class="form-control" placeholder="Course Name" name="coursenameG"
+                            id="coursenameG" value="{{education.CoursenameG}}" class="field left" readonly>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="collegeG">College Name</label>
+                        <input type="text" class="form-control" placeholder="College Name" name="collegeG" id="collegeG"
+                            value="{{education.CollegeG}}" class="field left" readonly>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="marksG">Marks</label>
+                        <input type="text" class="form-control" placeholder="Marks" name="marksG" id="marksG"
+                            value="{{education.ScoreG}}" class="field left" readonly>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="passoutG">Year Of Passing</label>
+                        <input type="text" class="form-control" placeholder="Year" name="passoutG" id="passoutG"
+                            value="{{education.PassoutG}}" class="field left" readonly>
+                    </div>
+                </div>
+                <!-- HSC -->
+                <div class="row my-3">
+                    <h5 class="text-decoration-underline">HSC : 12th</h5>
+                    <div class="col-md-3">
+                        <label for="coursenameHSC">Course Name</label>
+                        <input type="text" class="form-control" placeholder="Course Name" name="coursenameHSC"
+                            id="coursenameHSC" value="{{education.CoursenameHSC}}" class="field left" readonly>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="collegeHSC">College Name</label>
+                        <input type="text" class="form-control" placeholder="College Name" name="collegeHSC"
+                            id="collegeHSC" value="{{education.CollegeHSC}}" class="field left" readonly>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="marksHSC">Marks</label>
+                        <input type="text" class="form-control" placeholder="Marks" name="marksHSC" id="marksHSC"
+                            value="{{education.ScoreHSC}}" class="field left" readonly>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="passoutHSC">Year Of Passing</label>
+                        <input type="text" class="form-control" placeholder="Year" name="passoutHSC" id="passoutHSC"
+                            value="{{education.PassoutHSC}}" class="field left" readonly>
+                    </div>
+                </div>
+                <!-- SSC -->
+                <div class="row my-3">
+                    <h5 class="text-decoration-underline">SSC : 10th</h5>
+                    <div class="col-md-3">
+                        <label for="coursenameSSC">Course Name</label>
+                        <input type="text" class="form-control" placeholder="Course Name" name="coursenameSSC"
+                            id="coursenameSSC" value="{{education.CoursenameSSC}}" class="field left" readonly>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="collegeSSC">College Name</label>
+                        <input type="text" class="form-control" placeholder="College Name" name="collegeSSC"
+                            id="collegeSSC" value="{{education.CollegeSSC}}" class="field left" readonly>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="marksSSC">Marks</label>
+                        <input type="text" class="form-control" placeholder="Marks" name="marksSSC" id="marksSSC"
+                            value="{{education.ScoreSSC}}" class="field left" readonly>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="passoutSSC">Year Of Passing</label>
+                        <input type="text" class="form-control" placeholder="Year" name="passoutSSC" id="passoutSSC"
+                            value="{{education.PassoutSSC}}" class="field left" readonly>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <a href="{% url 'edit_Education' %}"><button class="btn mt-3 p-2"
+                            style="border: 0px;border-radius: 0px;background-color: orangered;color: white;width:100px;"
+                            type="submit">Edit</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock data %}

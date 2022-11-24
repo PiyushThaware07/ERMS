@@ -14,3 +14,29 @@ class EmployeeDetail(models.Model):
 
     def __str__(self):
         return f"{self.user.first_name} {self.user.last_name} / {self.user.username}"
+
+class EmployeeEducation(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE) #used to store pass , email , name 
+    # PG
+    CoursenamePG = models.CharField(max_length=100,null=True)
+    CollegePG = models.CharField(max_length=100,null=True)
+    ScorePG = models.CharField(max_length=100,null=True)
+    PassoutPG = models.CharField(max_length=5,null=True)
+    # G
+    CoursenameG = models.CharField(max_length=100,null=True)
+    CollegeG = models.CharField(max_length=100,null=True)
+    ScoreG = models.CharField(max_length=100,null=True)
+    PassoutG = models.CharField(max_length=5,null=True)
+    # HSC
+    CoursenameHSC = models.CharField(max_length=100,null=True)
+    CollegeHSC = models.CharField(max_length=100,null=True)
+    ScoreHSC = models.CharField(max_length=100,null=True)
+    PassoutHSC = models.CharField(max_length=5,null=True)
+    # SSC
+    CoursenameSSC = models.CharField(max_length=100,null=True)
+    CollegeSSC = models.CharField(max_length=100,null=True)
+    ScoreSSC = models.CharField(max_length=100,null=True)
+    PassoutSSC = models.CharField(max_length=5,null=True)
+
+    def __str__(self):
+        return f"{self.user.first_name} {self.user.last_name} / {self.user.username}"
