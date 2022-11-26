@@ -1,6 +1,12 @@
 {% extends 'admin_base.html' %}
 {% block title %}Admin Login{% endblock title %}
 {% block data %}
+<style>
+    body
+    {
+        background-color: #212529 !important;
+    }
+</style>
 <div class="container p-3 p-md-5 d-flex align-items-center justify-content-center" style="height: 89vh;">
     <div class="card p-3 shadow bg-transparent mt-3" style="width:500px;">
         <div class="card-title text-center" style="border-bottom:2px solid orangered;">
@@ -36,7 +42,7 @@
 {% if error == 'no' %}
 <script>
     alert('Login successfully');
-    window.location = ('{% url 'emp_home' %}'); 
+    window.location = ('{% url 'admin_home' %}'); 
 </script>
 {% endif %}
 {% if error == 'yes' %}

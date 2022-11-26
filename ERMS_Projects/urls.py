@@ -32,6 +32,7 @@ urlpatterns = [
     path('emp_Experience',views.emp_Experience,name="emp_Experience"),
     path('edit_Experience',views.edit_Experience,name="edit_Experience"),
     # Admin
-    path('emp_home',views.emp_home,name="emp_home"),
+    path('admin_home',views.admin_home,name="admin_home"),
     path('admin_Login',views.admin_Login,name="admin_Login"),
+    path('admin_changepassword',views.admin_changepassword,name="admin_changepassword"),
 ]

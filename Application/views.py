@@ -244,5 +244,25 @@ def admin_Login(request):
             error = "yes"            
     return render(request, 'admin_Login.html',locals())
 
-def emp_home(request):
-    return render(request, 'emp_home.html')    
+def admin_home(request):
+    return render(request, 'admin_home.html')   
+
+def admin_changepassword(request):
+    if not request.user.is_authenticated:
+        return redirect('admin_Login')
+    error = ""
+    user = request.user   
+    if request.method == "POST":
+        current = request.POST['currentPassowrd']
+        newPass = request.POST['newPassword']
+        try:
+            if user.check_password(current):
+                user.set_password(newPass)
+                user.save()
+                error = "no"
+            else:
+                error = "not"    
+        except:
+            error = "yes"   
+    return render(request, 'admin_changepassword.html',locals())    
+

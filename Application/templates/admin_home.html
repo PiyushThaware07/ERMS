@@ -1,0 +1,40 @@
+{% extends 'admin_base.html' %}
+{% block title %}Admin Home{% endblock title %}
+{% block data %}
+<style>
+    body {
+        overflow-x: hidden;
+        background-color: white !important;
+    }
+</style>
+<div class="container-fluid p-0 text-light">
+    <div class="row">
+        <div class="col-md-3 p-0 bg-dark" style="height: 100vh;">
+            <div class="card bg-dark" style="border-radius:0px;">
+                <div class="card-title p-3" style="border-bottom:1px solid white">
+                    <h5 class="text-center"><b>Admin Dashboard</b></h5>
+                </div>
+                <div class="card-body">
+                    <div class="list-group">
+                        <a href="{% url 'admin_home' %}" class="list-group-item list-group-item list-group-item-action {% if request.path == '/admin_home' %}active{% endif %}">Dashboard</a>
+                        <a href="" class="list-group-item list-group-item list-group-item-action">Employees</a>
+                        <a href="{% url 'admin_changepassword' %}" class="list-group-item list-group-item-action {% if request.path == '/admin_changepassword' %}active{% endif %}" >Change Password</a>
+                        <a href="{% url 'emp_logout' %}" class="list-group-item list-group-item-action {% if request.path == '/emp_logout' %}active{% endif %}" onclick="return confirm('Confirm Logout ? \n user : {{user.username}}')">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            {% block admin_data %}
+            <div class="card shadow p-5 m-3">
+                <div class="alert alert-primary text-center">
+                <h3><b>Welcome Back</b></h3>
+                <h6 class="text-decoration-underline">{{user}}</h6>
+            </div>
+            </div>
+            
+            {% endblock admin_data %}
+        </div>
+    </div>
+</div>
+{% endblock data %}
