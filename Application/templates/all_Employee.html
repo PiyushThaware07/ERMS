@@ -1,0 +1,157 @@
+{% extends 'admin_home.html' %}
+{% block title %}Employees{% endblock title %}
+{% block admin_data %}
+<div class="card m-3 shadow">
+  <div class="card-body">
+    <span class="d-none d-md-block">
+      <div class="container-fluid p-3">
+        <!--Data show-->
+        <table class="table table-bordered border-primary">
+          <h4 class="text-decoration-underline text-primary"><b>All Employees</b></h4>
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">First</th>
+              <th scope="col">Last</th>
+              <th scope="col">Emp ID</th>
+              <th scope="col">Email ID</th>
+              <th scope="col">Contact</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody class="text-black">
+            {% for i in allEmployee %}
+            <tr>
+              <th scope="row">{{forloop.counter}}</th>
+              <td>{{i.user.first_name}}</td>
+              <td>{{i.user.last_name}}</td>
+              <td>{{i.emp_id}}</td>
+              <td>{{i.user.username}}</td>
+              <td>{{i.contact}}</td>
+              <td>{{i.joiningDate}}</td>
+              <td>
+                <!-- Edit ---------------------------------------------------------------------------- -->
+                <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal"
+                  data-bs-target="#exampleModal-{{i.user.id}}">
+                  Edit
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal-{{i.user.id}}" tabindex="-1"
+                  aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <form action="/Edit/{{i.user.id}}" method="post">
+                      {% csrf_token %}
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Employee</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="col-md-12 my-md-3">
+                            <input type="text" placeholder="First Name" name="fname" class="form-control"
+                              value="{{i.user.first_name}}">
+                          </div>
+                          <div class="col-md-12 my-md-3">
+                            <input type="text" placeholder="last Name" name="lname" class="form-control"
+                              value="{{i.user.last_name}}">
+                          </div>
+                          <div class="col-md-12 my-md-3">
+                            <input type="email" placeholder="Email ID" name="email" class="form-control"
+                              value="{{i.user.username}}">
+                          </div>
+                          <div class="col-md-12 my-md-3">
+                            <input type="tel" placeholder="Contact" name="contact" class="form-control"
+                              value="{{i.contact}}">
+                          </div>
+                          <div class="col-md-12 my-md-3">
+                            <input type="date" placeholder="Joining  Date" name="joinDate" class="form-control"
+                              value="{{i.joiningDate}}">
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <a href="/Edit/{{i.user.id}}"><button type="submit" class="btn btn-primary">Save
+                              changes</button></a>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <!-- ------------------------------------------------------------------ -->
+
+                <a href="/delete/{{i.user.id}}"><button class="btn btn-sm btn-danger">Delete</button></a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </span>
+
+    <span class="d-block d-md-none">
+      <h6 class="text-decoration-underline text-primary"><b>All Employees</b></h6>
+      <!-- Moble View --------------------------------------------- -->
+      <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="accordion-item">
+          {% for i in allEmployee %}
+          <h2 class="accordion-header" id="flush-heading-{{i.user.id}}">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#flush-collapseOne-{{i.user.id}}" aria-expanded="false" aria-controls="flush-collapseOne">
+              {{i.user.username}}
+            </button>
+          </h2>
+          <div id="flush-collapseOne-{{i.user.id}}" class="accordion-collapse collapse"
+            aria-labelledby="flush-heading-{{i.user.id}}" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+              <label for="firstname">First Name</label>
+              <input type="text" name="firstname" id="firstname" placeholder="firstname" class="form-control"
+                value="{{i.user.first_name}}">
+              <label for="lastname">Last Name</label>
+              <label for="empID">Employee ID</label>
+              <input type="text" name="empID" id="empID" placeholder="Emp ID" class="form-control" value="{{i.emp_id}}">
+              <input type="text" name="lastname" id="lastname" placeholder="lastname" class="form-control"
+                value="{{i.user.last_name}}">
+              <label for="email">Email ID</label>
+              <input type="email" name="email" id="email" placeholder="Email ID" class="form-control"
+                value="{{i.user.username}}">
+              <label for="contact">Contact</label>
+              <input type="tel" name="contact" id="contact" placeholder="Contact" class="form-control"
+                value="{{i.contact}}">
+              <a href="/delete/{{i.user.id}}"><button class="btn btn-sm btn-success mt-3">Delete</button></a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+
+<!--Java Script-->
+<!-- Update -->
+{% if update == 'yes' %}
+<script>
+    alert('Employee Details Updates Successfully');
+    window.location = ('{% url 'all_Employee' %}'); 
+</script>
+{% endif %}
+{% if update == 'no' %}
+<script>
+    alert('Something Went Wrong,Try Again ...');
+</script>
+{% endif %}
+<!-- Delete -->
+{% if deleted == 'yes' %}
+<script>
+    alert('Employee Delete Successfully');
+    window.location = ('{% url 'all_Employee' %}'); 
+</script>
+{% endif %}
+{% if deleted == 'no' %}
+<script>
+    alert('Something Went Wrong,Try Again ...');
+</script>
+{% endif %}
+{% endblock admin_data %}

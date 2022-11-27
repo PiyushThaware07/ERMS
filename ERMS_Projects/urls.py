@@ -35,4 +35,7 @@ urlpatterns = [
     path('admin_home',views.admin_home,name="admin_home"),
     path('admin_Login',views.admin_Login,name="admin_Login"),
     path('admin_changepassword',views.admin_changepassword,name="admin_changepassword"),
+    path('all_Employee',views.all_Employee,name="all_Employee"),
+    path('delete/<str:id>',views.delete,name="delete"),
+    path('Edit/<str:id>',views.Edit,name="Edit"),
 ]

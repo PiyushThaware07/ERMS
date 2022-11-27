@@ -8,31 +8,73 @@
     }
 </style>
 <div class="container-fluid p-0 text-light">
+    <!--Navbar-->
+    <div class="d-lg-none d-block">
+        <nav class="navbar navbar-expand-lg bg-black navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand text-white" href="{% url 'emp_Interface' %}"><b>ERMS</b></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'admin_home' %}">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'all_Employee' %}">Employees</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page"
+                                href="{% url 'admin_changepassword' %}">Change Password</a>
+                        </li>
+                    </ul>
+                    <span class="d-flex py-3">
+                        <a href="{% url 'emp_logout' %}" class="list-group-item list-group-item-action"
+                            onclick="return confirm('Confirm Logout ? \n user : {{user.username}}')"><button
+                                class="btn btn-sm btn-danger" type="button">Logout</button></a>
+                    </span>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+
     <div class="row">
-        <div class="col-md-3 p-0 bg-dark" style="height: 100vh;">
+        <div class="col-md-3 p-0 bg-dark d-none d-lg-block" style="height: 100vh;">
             <div class="card bg-dark" style="border-radius:0px;">
                 <div class="card-title p-3" style="border-bottom:1px solid white">
                     <h5 class="text-center"><b>Admin Dashboard</b></h5>
                 </div>
                 <div class="card-body">
                     <div class="list-group">
-                        <a href="{% url 'admin_home' %}" class="list-group-item list-group-item list-group-item-action {% if request.path == '/admin_home' %}active{% endif %}">Dashboard</a>
-                        <a href="" class="list-group-item list-group-item list-group-item-action">Employees</a>
-                        <a href="{% url 'admin_changepassword' %}" class="list-group-item list-group-item-action {% if request.path == '/admin_changepassword' %}active{% endif %}" >Change Password</a>
-                        <a href="{% url 'emp_logout' %}" class="list-group-item list-group-item-action {% if request.path == '/emp_logout' %}active{% endif %}" onclick="return confirm('Confirm Logout ? \n user : {{user.username}}')">Logout</a>
+                        <a href="{% url 'admin_home' %}"
+                            class="list-group-item list-group-item list-group-item-action {% if request.path == '/admin_home' %}active{% endif %}">Dashboard</a>
+                        <a href="{% url 'all_Employee' %}"
+                            class="list-group-item list-group-item list-group-item-action {% if request.path == '/all_Employee' %}active{% endif %}">Employees</a>
+                        <a href="{% url 'admin_changepassword' %}"
+                            class="list-group-item list-group-item-action {% if request.path == '/admin_changepassword' %}active{% endif %}">Change
+                            Password</a>
+                        <a href="{% url 'emp_logout' %}"
+                            class="list-group-item list-group-item-action {% if request.path == '/emp_logout' %}active{% endif %}"
+                            onclick="return confirm('Confirm Logout ? \n user : {{user.username}}')">Logout</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-9">
+
+
+        <div class="col-12 col-lg-9">
             {% block admin_data %}
             <div class="card shadow p-5 m-3">
                 <div class="alert alert-primary text-center">
-                <h3><b>Welcome Back</b></h3>
-                <h6 class="text-decoration-underline">{{user}}</h6>
+                    <h3><b>Welcome Back</b></h3>
+                    <h6 class="text-decoration-underline">{{user}}</h6>
+                </div>
             </div>
-            </div>
-            
+
             {% endblock admin_data %}
         </div>
     </div>

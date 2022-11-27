@@ -4,6 +4,8 @@ from . models import *
 # auth
 from django.contrib.auth import authenticate,login,logout
 
+from . models import EmployeeDetail
+
 # Create your views here.
 def index(request):
     return render(request, 'index.html')
@@ -266,3 +268,46 @@ def admin_changepassword(request):
             error = "yes"   
     return render(request, 'admin_changepassword.html',locals())    
 
+def all_Employee(request):
+    if not request.user.is_authenticated:
+        return redirect('admin_Login')
+    allEmployee = EmployeeDetail.objects.all()    
+    return render(request, 'all_Employee.html',locals())
+
+def delete(request,id):
+    if not request.user.is_authenticated:
+        return redirect('admin_Login')
+    try:
+        employee = User.objects.filter(id=id)
+        employee.delete()
+        deleted = 'yes'
+    except:
+        deleted = 'no'    
+    return render(request, 'all_Employee.html',locals())     
+
+def Edit(request,id):
+    if request.method == "POST":
+        fname = request.POST.get('fname')
+        lname = request.POST.get('lname')
+        email = request.POST.get('email')
+        contact = request.POST.get('contact')
+        joinDate = request.POST.get('joinDate')
+
+        emp = User(
+            id = id,
+            first_name=fname,
+            last_name=lname,
+            username=email,
+        )
+        data = EmployeeDetail.objects.get(user=emp)
+        data.contact = contact
+        if joinDate:
+             data.joiningDate = joinDate
+
+        try:
+            emp.save()
+            data.save()
+            update = "yes"
+        except:
+            update = "no"
+    return render(request, 'all_Employee.html',locals())     
